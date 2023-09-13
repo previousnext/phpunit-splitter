@@ -1,0 +1,26 @@
+{
+  "name": "previousnext/phpunit-splitter",
+  "description": "Splits phpunit tests",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Michael Strelan",
+      "email": "michael.strelan@previousnext.com.au"
+    }
+  ],
+  "type": "project",
+  "require": {
+    "php": "^8.1",
+    "phpunit/phpunit": "^9.6",
+    "previousnext/phpunit-finder": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {"PhpUnitSplitter\\": "src/"}
+  },
+  "autoload-dev": {
+    "psr-4": {"PhpUnitSplitter\\Tests\\": "tests/"}
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
