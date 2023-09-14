@@ -26,7 +26,13 @@ final class TestMapper {
     $classesXpath = $this->testsXml->xpath('//testCaseClass');
     foreach ($classesXpath as $class) {
       $className = (string) $class->attributes()['name'];
-      $reflection = new \ReflectionClass($className);
+      try {
+        $reflection = new \ReflectionClass($className);
+      }
+      catch (\ReflectionException $e) {
+        // Couldn't find the class.
+        continue;
+      }
       $filename = $reflection->getFileName();
       $testCases = $class->xpath('testCaseMethod');
       foreach ($testCases as $testCase) {
