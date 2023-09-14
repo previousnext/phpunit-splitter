@@ -31,7 +31,9 @@ class SplitterCommand extends Command {
    */
   protected function execute(InputInterface $input, OutputInterface $output): int {
     $bootstrap = $input->getOption('bootstrap-file');
-    include_once $bootstrap;
+    if (\file_exists($bootstrap)) {
+      include_once $bootstrap;
+    }
     // @todo validation
     $splits = (int) $input->getArgument('splits');
     $index = (int) $input->getArgument('index');
