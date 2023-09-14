@@ -29,3 +29,9 @@ Split the tests in 4 groups and get the third group (2):
 ```bash
 phpunit-splitter 4 2 --tests-file=tests.xml --results-file=.phpunit.result.cache
 ```
+
+Pass the results to PHPUnit:
+
+```bash
+phpunit-splitter 1 0 | xargs -n 2 sh -c './bin/phpunit --filter="/$0$/" "$1"'
+```
