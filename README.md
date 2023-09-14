@@ -33,5 +33,9 @@ phpunit-splitter 4 2 --tests-file=tests.xml --results-file=.phpunit.result.cache
 Pass the results to PHPUnit:
 
 ```bash
-phpunit-splitter 1 0 | xargs -n 2 sh -c './bin/phpunit --filter="/$0$/" "$1"'
+./phpunit-splitter 2 0 --tests-file=tests/fixtures/tests.xml --results-file=tests/fixtures/.phpunit.result.cache | while IFS= read -r line; do
+    filepath=$(echo "$line" | awk '{print $NF}')
+    testname=$(echo "$line" | awk '{$NF=""; print $0}')
+    ./vendor/bin/phpunit --filter="$testname" $filepath
+done
 ```

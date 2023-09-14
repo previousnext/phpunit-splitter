@@ -44,7 +44,7 @@ class SplitterCommand extends Command {
     $map = $mapper->sortMap($mapper->getMap());
 
     foreach ($this->split($map, $splits, $index) as $testName => $test) {
-      $output->writeln("'" . \addslashes($testName) . "'" . ' ' . $test['path']);
+      $output->writeln(\addslashes($testName) . ' ' . $test['path']);
     }
 
     return 0;
