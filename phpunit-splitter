@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+/**
+ * @file
+ * Console application for PHPUnit Splitter.
+ */
+
+$autoload = [
+  __DIR__ . '/vendor/autoload.php',
+  dirname(__DIR__, 1) . '/vendor/autoload.php',
+  dirname(__DIR__, 2) . '/vendor/autoload.php',
+  dirname(__DIR__, 1) . '/autoload.php',
+  dirname(__DIR__, 2) . '/autoload.php',
+];
+foreach ($autoload as $file) {
+  if (file_exists($file)) {
+    require $file;
+    break;
+  }
+}
+
+const APP_NAME = 'PHPUnit Splitter';
+const VERSION = '1.x-dev';
+
+use PhpUnitSplitter\SplitterCommand;
+use Symfony\Component\Console\Application;
+
+
+$application = new Application(APP_NAME, VERSION);
+$command = new SplitterCommand('phpunit-splitter');
+$application->add($command);
+$application->setDefaultCommand($command->getName(), TRUE);
+$application->run();
