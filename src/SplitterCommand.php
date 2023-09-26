@@ -21,9 +21,11 @@ class SplitterCommand extends Command {
   protected function configure(): void {
     $this->addArgument('splits', InputArgument::OPTIONAL, "The number of splits", 1);
     $this->addArgument('index', InputArgument::OPTIONAL, "The index of the current split", 0);
-    $this->addOption('tests-file', 't', InputOption::VALUE_REQUIRED, "The xml file listing all tests.", getcwd() . './tests.xml');
+    $this->addOption('tests-file', 't', InputOption::VALUE_REQUIRED, "The xml file listing all tests.", getcwd() . '/tests.xml');
     $this->addOption('results-file', 'f', InputOption::VALUE_REQUIRED, "The results cache file.", getcwd() . '/.phpunit.result.cache', );
     $this->addOption('bootstrap-file', 'b', InputOption::VALUE_OPTIONAL, "The tests bootstrap file.", getcwd() . '/tests/bootstrap.php');
+    $this->addOption('prefix', 'p', InputOption::VALUE_OPTIONAL, "The prefix to remove from the file names.", getcwd() . '/');
+    $this->addOption('json', 'j', InputOption::VALUE_NONE, "Output the result as json.");
   }
 
   /**
@@ -39,15 +41,22 @@ class SplitterCommand extends Command {
     $index = (int) $input->getArgument('index');
     $testsFile = $input->getOption('tests-file');
     $resultsFile = $input->getOption('results-file');
+    $prefix = $input->getOption('prefix');
+    $json = $input->getOption('json');
 
-    $mapper = new TestMapper($testsFile, $resultsFile);
+    $mapper = new TestMapper($testsFile, $resultsFile, $prefix);
     $map = $mapper->sortMap($mapper->getMap());
 
-    foreach ($this->split($map, $splits, $index) as $testName => $test) {
-      $output->writeln(\addslashes($testName) . ' ' . $test['path']);
+    $split = $this->split($map, $splits, $index);
+    if ($json) {
+      $output->writeln(\json_encode($split));
+      return Command::SUCCESS;
+    }
+    foreach ($split as $testPath => $test) {
+      $output->writeln($testPath);
     }
 
-    return 0;
+    return Command::SUCCESS;
   }
 
   private function split(array $map, int $splits, int $index): array {

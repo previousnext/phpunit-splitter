@@ -15,9 +15,12 @@ final class TestMapper {
   private \SimpleXMLElement|FALSE $testsXml;
   private TestResultCache $resultCache;
 
-  public function __construct(string $testListFilePath, string $testResultFilePath) {
+  private string $prefix;
+
+  public function __construct(string $testListFilePath, string $testResultFilePath, string $prefix) {
     $this->testsXml = \simplexml_load_file($testListFilePath);
     $this->resultCache = new DefaultTestResultCache($testResultFilePath);
+    $this->prefix = $prefix;
   }
 
   public function getMap(): array {
@@ -28,23 +31,29 @@ final class TestMapper {
       $className = (string) $class->attributes()['name'];
       try {
         $reflection = new \ReflectionClass($className);
-      }
-      catch (\ReflectionException $e) {
+      } catch (\ReflectionException $e) {
         // Couldn't find the class.
         continue;
       }
       $filename = $reflection->getFileName();
+      $filename = \str_replace($this->prefix, '', $filename);
+      $map[$filename] = [
+        'className' => $className,
+        'time' => 0.0,
+      ];
       $testCases = $class->xpath('testCaseMethod');
       foreach ($testCases as $testCase) {
-        $testName = $reflection->getShortName() . '::' . $testCase->attributes()['name'];
+        $shortName = (string) $testCase->attributes()['name'];
+        $fullName = $reflection->getName() . '::' . $shortName;
         $dataSet = $testCase->attributes()['dataSet'] ?? NULL;
+        $cacheKey = $fullName;
         if ($dataSet !== NULL) {
-          $testName .= " with data set $dataSet";
+          $cacheKey .= " with data set $dataSet";
+          $shortName .= "@$dataSet";
         }
-        $map[$testName] = [
-          'path' => $filename,
-          'time' => $this->resultCache->getTime($testName),
-        ];
+        $time = $this->resultCache->getTime($cacheKey);
+        $map[$filename][$shortName] = ['time' => $time];
+        $map[$filename]['time'] += $time;
       }
     }
     return $map;
