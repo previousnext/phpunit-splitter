@@ -36,7 +36,9 @@ final class TestMapper {
         continue;
       }
       $filename = $reflection->getFileName();
-      $filename = \str_replace($this->prefix, '', $filename);
+      if (\str_starts_with($filename, $this->prefix)) {
+        $filename = \substr($filename, \strlen($this->prefix));
+      }
       $map[$filename] = [
         'className' => $className,
         'time' => 0.0,
