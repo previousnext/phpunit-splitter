@@ -33,9 +33,12 @@ phpunit-splitter 4 2 --tests-file=tests.xml --results-file=.phpunit.result.cache
 Pass the results to PHPUnit:
 
 ```bash
-./phpunit-splitter 2 0 --tests-file=tests/fixtures/tests.xml --results-file=tests/fixtures/.phpunit.result.cache | while IFS= read -r line; do
-    filepath=$(echo "$line" | awk '{print $NF}')
-    testname=$(echo "$line" | awk '{$NF=""; print $0}')
-    ./vendor/bin/phpunit --filter="$testname" $filepath
+./phpunit-splitter 2 0 --tests-file=tests/fixtures/tests.xml --results-file=tests/fixtures/.phpunit.result.cache | xargs ./vendor/bin/phpunit 
 done
+```
+
+Output the test list as JSON:
+
+```bash
+./phpunit-splitter 2 0 --json --tests-file=tests/fixtures/tests.xml --results-file=tests/fixtures/.phpunit.result.cache
 ```
