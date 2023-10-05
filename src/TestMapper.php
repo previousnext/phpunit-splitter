@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace PhpUnitSplitter;
 
@@ -41,7 +41,8 @@ final class TestMapper {
       $className = (string) $class->attributes()['name'];
       try {
         $reflection = new \ReflectionClass($className);
-      } catch (\ReflectionException $e) {
+      }
+      catch (\ReflectionException $e) {
         // Couldn't find the class.
         continue;
       }
@@ -84,7 +85,7 @@ final class TestMapper {
    *   The sorted map.
    */
   public function sortMap(array $map): array {
-    uasort($map, function ($a, $b) {
+    \uasort($map, function ($a, $b) {
       return $a['time'] <=> $b['time'];
     });
     return $map;
