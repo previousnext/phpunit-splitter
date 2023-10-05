@@ -2,34 +2,34 @@
 
 declare(strict_types=1);
 
-namespace PhpUnitSplitter\Tests\fixtures\Test;
+namespace PhpUnitSplitter\Tests\Fixtures;
 
 use PHPUnit\Framework\TestCase;
 
-class SlowTestsTest extends TestCase {
+class FastTestsTest extends TestCase {
 
   function testOne(): void {
-    usleep(100000);
+    usleep(10000);
     $this->assertTrue(TRUE);
   }
 
   function testTwo(): void {
-    usleep(200000);
+    usleep(20000);
     $this->assertTrue(TRUE);
   }
 
   function testThree(): void {
-    usleep(300000);
+    usleep(30000);
     $this->assertTrue(TRUE);
   }
 
   function testFour(): void {
-    usleep(400000);
+    usleep(40000);
     $this->assertTrue(TRUE);
   }
 
   function testFive(): void {
-    usleep(500000);
+    usleep(50000);
     $this->assertTrue(TRUE);
   }
 

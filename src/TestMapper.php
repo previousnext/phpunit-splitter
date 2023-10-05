@@ -12,17 +12,30 @@ use PHPUnit\Runner\TestResultCache;
  */
 final class TestMapper {
 
-  private \SimpleXMLElement|FALSE $testsXml;
+  private \SimpleXMLElement|false $testsXml;
+
   private TestResultCache $resultCache;
 
   private string $prefix;
 
+  /**
+   * Constructs a new TestMapper.
+   */
   public function __construct(string $testListFilePath, string $testResultFilePath, string $prefix) {
     $this->testsXml = \simplexml_load_file($testListFilePath);
     $this->resultCache = new DefaultTestResultCache($testResultFilePath);
     $this->prefix = $prefix;
   }
 
+  /**
+   * Returns a map of test methods with their file name and execution time.
+   *
+   * @return array {
+   *   filename: string,
+   *   className: string,
+   *   time: float
+   * }
+   */
   public function getMap(): array {
     $this->resultCache->load();
     $map = [];

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PhpUnitSplitter\Tests\fixtures\Test;
+namespace PhpUnitSplitter\Tests\Fixtures;
 
 use PHPUnit\Framework\TestCase;
 
