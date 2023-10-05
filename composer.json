@@ -15,6 +15,7 @@
     "symfony/console": "^6.3"
   },
   "require-dev": {
+    "phpstan/phpstan": "^1.10",
     "phpunit/phpunit": "^9.6"
   },
   "autoload": {
@@ -27,6 +28,7 @@
     }
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "bin-dir": "bin"
   }
 }

@@ -30,11 +30,8 @@ final class TestMapper {
   /**
    * Returns a map of test methods with their file name and execution time.
    *
-   * @return array {
-   *   filename: string,
-   *   className: string,
-   *   time: float
-   * }
+   * @return array<string,array<string,float>>
+   *   The map of test files and execution times.
    */
   public function getMap(): array {
     $this->resultCache->load();
@@ -67,13 +64,25 @@ final class TestMapper {
           $shortName .= "@$dataSet";
         }
         $time = $this->resultCache->getTime($cacheKey);
-        $map[$filename][$shortName] = ['time' => $time];
+        $map[$filename]['testCases'][] = [
+          'testCase' => $shortName,
+          'time' => $time,
+        ];
         $map[$filename]['time'] += $time;
       }
     }
     return $map;
   }
 
+  /**
+   * Sorts the map by execution time.
+   *
+   * @param array<string,array<string,float>> $map
+   *   The map to sort.
+   *
+   * @return array<string,array<string,float>>
+   *   The sorted map.
+   */
   public function sortMap(array $map): array {
     uasort($map, function ($a, $b) {
       return $a['time'] <=> $b['time'];

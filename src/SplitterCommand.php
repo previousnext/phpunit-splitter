@@ -59,6 +59,13 @@ class SplitterCommand extends Command {
     return Command::SUCCESS;
   }
 
+  /**
+   * Splits the map into the given number of splits.
+   *
+   * @param array<string,array<string,float>> $map
+   *
+   * @return array<string,array<string,float>>
+   */
   private function split(array $map, int $splits, int $index): array {
     $result = [];
     $keys = array_keys($map);
