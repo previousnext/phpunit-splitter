@@ -1,35 +1,53 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace PhpUnitSplitter\Tests\Fixtures;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Simulates a slow test.
+ */
 class SlowTestsTest extends TestCase {
 
-  function testOne(): void {
-    usleep(100000);
+  /**
+   *
+   */
+  public function testOne(): void {
+    \usleep(100000);
     $this->assertTrue(TRUE);
   }
 
-  function testTwo(): void {
-    usleep(200000);
+  /**
+   *
+   */
+  public function testTwo(): void {
+    \usleep(200000);
     $this->assertTrue(TRUE);
   }
 
-  function testThree(): void {
-    usleep(300000);
+  /**
+   *
+   */
+  public function testThree(): void {
+    \usleep(300000);
     $this->assertTrue(TRUE);
   }
 
-  function testFour(): void {
-    usleep(400000);
+  /**
+   *
+   */
+  public function testFour(): void {
+    \usleep(400000);
     $this->assertTrue(TRUE);
   }
 
-  function testFive(): void {
-    usleep(500000);
+  /**
+   *
+   */
+  public function testFive(): void {
+    \usleep(500000);
     $this->assertTrue(TRUE);
   }
 

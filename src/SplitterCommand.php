@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace PhpUnitSplitter;
 
@@ -21,10 +21,10 @@ class SplitterCommand extends Command {
   protected function configure(): void {
     $this->addArgument('splits', InputArgument::OPTIONAL, "The number of splits", 1);
     $this->addArgument('index', InputArgument::OPTIONAL, "The index of the current split", 0);
-    $this->addOption('tests-file', 't', InputOption::VALUE_REQUIRED, "The xml file listing all tests.", getcwd() . '/tests.xml');
-    $this->addOption('results-file', 'f', InputOption::VALUE_REQUIRED, "The results cache file.", getcwd() . '/.phpunit.result.cache', );
-    $this->addOption('bootstrap-file', 'b', InputOption::VALUE_OPTIONAL, "The tests bootstrap file.", getcwd() . '/tests/bootstrap.php');
-    $this->addOption('prefix', 'p', InputOption::VALUE_OPTIONAL, "The prefix to remove from the file names.", getcwd() . '/');
+    $this->addOption('tests-file', 't', InputOption::VALUE_REQUIRED, "The xml file listing all tests.", \getcwd() . '/tests.xml');
+    $this->addOption('results-file', 'f', InputOption::VALUE_REQUIRED, "The results cache file.", \getcwd() . '/.phpunit.result.cache',);
+    $this->addOption('bootstrap-file', 'b', InputOption::VALUE_OPTIONAL, "The tests bootstrap file.", \getcwd() . '/tests/bootstrap.php');
+    $this->addOption('prefix', 'p', InputOption::VALUE_OPTIONAL, "The prefix to remove from the file names.", \getcwd() . '/');
     $this->addOption('json', 'j', InputOption::VALUE_NONE, "Output the result as json.");
   }
 
@@ -60,18 +60,24 @@ class SplitterCommand extends Command {
   }
 
   /**
-   * Splits the map into the given number of splits.
+   * Splits the tests map into the given number of splits.
    *
    * @param array<string,array<string,float>> $map
+   *   The map of tests.
+   * @param int $splits
+   *   The number of splits.
+   * @param int $index
+   *   The index of the current split.
    *
    * @return array<string,array<string,float>>
+   *   The split map.
    */
   private function split(array $map, int $splits, int $index): array {
     $result = [];
-    $keys = array_keys($map);
-    $values = array_values($map);
+    $keys = \array_keys($map);
+    $values = \array_values($map);
 
-    for ($i = $index; $i < count($map); $i++) {
+    for ($i = $index; $i < \count($map); $i++) {
       if (($i - $index) % $splits === 0) {
         $result[$keys[$i]] = $values[$i];
       }

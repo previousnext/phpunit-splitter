@@ -1,21 +1,27 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace PhpUnitSplitter\Tests\Fixtures;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Simulates a provider test.
+ */
 class ProviderTest extends TestCase {
 
   /**
    * @dataProvider provider
    */
-  function testProvider(int $sleep): void {
-    usleep($sleep);
+  public function testProvider(int $sleep): void {
+    \usleep($sleep);
     $this->assertTrue(TRUE);
   }
 
+  /**
+   *
+   */
   public function provider(): array {
     return [
       'one' => [111111],
@@ -25,6 +31,5 @@ class ProviderTest extends TestCase {
       'five' => [666666],
     ];
   }
-
 
 }

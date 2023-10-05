@@ -15,8 +15,11 @@
     "symfony/console": "^6.3"
   },
   "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
     "phpstan/phpstan": "^1.10",
-    "phpunit/phpunit": "^9.6"
+    "phpunit/phpunit": "^9.6",
+    "previousnext/coding-standard": "^0.1.3",
+    "staabm/annotate-pull-request-from-checkstyle": "^1.8"
   },
   "autoload": {
     "psr-4": {"PhpUnitSplitter\\": "src/"}
@@ -29,6 +32,9 @@
   },
   "config": {
     "sort-packages": true,
-    "bin-dir": "bin"
+    "bin-dir": "bin",
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }

@@ -28,6 +28,8 @@ jobs:
           show-progress: false
       - name: 📦 Composer Update
         run: composer update --with-all-dependencies --prefer-dist --no-progress --no-interaction ${{ matrix.prefer_lowest }}
+      - name: 🧹 PHPCS
+        run: ./bin/phpcs --report=checkstyle -q | ./bin/cs2pr
       - name: 🧹 PHPStan
         run: ./bin/phpstan --error-format=github analyse
       - name: ⚡ Run Tests
