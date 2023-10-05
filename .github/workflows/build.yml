@@ -17,7 +17,7 @@ jobs:
       matrix:
         prefer_lowest: ["", "--prefer-lowest"]
     container:
-      image: skpr/php-cli:${{ inputs.php_cli_tag }}
+      image: skpr/php-cli:8.2-dev-v2-edge
       options:
         --pull always
         --user 1001:1001
