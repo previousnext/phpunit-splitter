@@ -1,0 +1,39 @@
+name: 🏗 Build
+
+on:
+  pull_request:
+    types: [ synchronize, opened, reopened, ready_for_review ]
+  push:
+    branches: [ main ]
+
+permissions:
+  checks: write
+  pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        prefer_lowest: ["", "--prefer-lowest"]
+    container:
+      image: skpr/php-cli:${{ inputs.php_cli_tag }}
+      options:
+        --pull always
+        --user 1001:1001
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+      - name: 📦 Composer Install
+        run: composer install --prefer-dist --no-progress --no-interaction ${{ matrix.prefer_lowest }}
+      - name: 🧹 PHPStan
+        run: ./bin/phpstan --error-format=github analyse
+      - name: ⚡ Run Tests
+        run: ./bin/phpunit --log-junit phpunit-results.xml
+      - name: 📝 Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: phpunit-results.xml

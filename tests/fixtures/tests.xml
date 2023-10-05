@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests>
+ <testCaseClass name="PhpUnitSplitter\Tests\Fixtures\FastTestsTest">
+  <testCaseMethod name="testOne" groups="default"/>
+  <testCaseMethod name="testTwo" groups="default"/>
+  <testCaseMethod name="testThree" groups="default"/>
+  <testCaseMethod name="testFour" groups="default"/>
+  <testCaseMethod name="testFive" groups="default"/>
+ </testCaseClass>
+ <testCaseClass name="PhpUnitSplitter\Tests\Fixtures\ProviderTest">
+  <testCaseMethod name="testProvider" groups="default" dataSet="&quot;one&quot;"/>
+  <testCaseMethod name="testProvider" groups="default" dataSet="&quot;two&quot;"/>
+  <testCaseMethod name="testProvider" groups="default" dataSet="&quot;three&quot;"/>
+  <testCaseMethod name="testProvider" groups="default" dataSet="&quot;four&quot;"/>
+  <testCaseMethod name="testProvider" groups="default" dataSet="&quot;five&quot;"/>
+ </testCaseClass>
+ <testCaseClass name="PhpUnitSplitter\Tests\Fixtures\SlowTestsTest">
+  <testCaseMethod name="testOne" groups="default"/>
+  <testCaseMethod name="testTwo" groups="default"/>
+  <testCaseMethod name="testThree" groups="default"/>
+  <testCaseMethod name="testFour" groups="default"/>
+  <testCaseMethod name="testFive" groups="default"/>
+ </testCaseClass>
+</tests>

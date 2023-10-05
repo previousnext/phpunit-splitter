@@ -11,16 +11,24 @@
   "type": "project",
   "require": {
     "php": "^8.1",
-    "phpunit/phpunit": "^9.6",
-    "previousnext/phpunit-finder": "^2.0"
+    "ext-simplexml": "*",
+    "symfony/console": "^6.3"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^1.10",
+    "phpunit/phpunit": "^9.6"
   },
   "autoload": {
     "psr-4": {"PhpUnitSplitter\\": "src/"}
   },
   "autoload-dev": {
-    "psr-4": {"PhpUnitSplitter\\Tests\\": "tests/"}
+    "psr-4": {
+      "PhpUnitSplitter\\Tests\\": "tests/src",
+      "PhpUnitSplitter\\Tests\\Fixtures\\": "tests/fixtures/src"
+    }
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "bin-dir": "bin"
   }
 }
