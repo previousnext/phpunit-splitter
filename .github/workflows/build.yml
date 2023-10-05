@@ -26,8 +26,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           show-progress: false
-      - name: 📦 Composer Install
-        run: composer install --prefer-dist --no-progress --no-interaction ${{ matrix.prefer_lowest }}
+      - name: 📦 Composer Update
+        run: composer update --with-all-dependencies --prefer-dist --no-progress --no-interaction ${{ matrix.prefer_lowest }}
       - name: 🧹 PHPStan
         run: ./bin/phpstan --error-format=github analyse
       - name: ⚡ Run Tests
