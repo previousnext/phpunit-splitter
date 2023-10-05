@@ -1,10 +1,14 @@
-name: Build
+name: 🏗 Build
 
 on:
   pull_request:
     types: [ synchronize, opened, reopened, ready_for_review ]
   push:
     branches: [ main ]
+
+permissions:
+  checks: write
+  pull-requests: write
 
 jobs:
   build:
@@ -26,6 +30,10 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction ${{ matrix.prefer_lowest }}
       - name: 🧹 PHPStan
         run: ./bin/phpstan --error-format=github analyse
-      - name: ⚡ Test
-        run: ./bin/phpunit
-
+      - name: ⚡ Run Tests
+        run: ./bin/phpunit --log-junit phpunit-results.xml
+      - name: 📝 Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: phpunit-results.xml
