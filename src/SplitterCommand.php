@@ -19,13 +19,51 @@ class SplitterCommand extends Command {
    * {@inheritdoc}
    */
   protected function configure(): void {
-    $this->addArgument('splits', InputArgument::OPTIONAL, "The number of splits", 1);
-    $this->addArgument('index', InputArgument::OPTIONAL, "The index of the current split", 0);
-    $this->addOption('tests-file', 't', InputOption::VALUE_REQUIRED, "The xml file listing all tests.", \getcwd() . '/tests.xml');
-    $this->addOption('results-file', 'f', InputOption::VALUE_REQUIRED, "The results cache file.", \getcwd() . '/.phpunit.result.cache',);
-    $this->addOption('bootstrap-file', 'b', InputOption::VALUE_OPTIONAL, "The tests bootstrap file.", \getcwd() . '/tests/bootstrap.php');
-    $this->addOption('prefix', 'p', InputOption::VALUE_OPTIONAL, "The prefix to remove from the file names.", \getcwd() . '/');
-    $this->addOption('json', 'j', InputOption::VALUE_NONE, "Output the result as json.");
+    $this->addArgument(
+      'splits',
+      InputArgument::OPTIONAL,
+      "The number of splits",
+      1
+    );
+    $this->addArgument(
+      'index',
+      InputArgument::OPTIONAL,
+      "The index of the current split",
+      0
+    );
+    $this->addOption(
+      'tests-file',
+      't',
+      InputOption::VALUE_REQUIRED,
+      "The xml file listing all tests.",
+      \getcwd() . '/tests.xml');
+    $this->addOption(
+      'results-file',
+      'f',
+      InputOption::VALUE_REQUIRED,
+      "The results cache file.",
+      \getcwd() . '/.phpunit.result.cache'
+    );
+    $this->addOption(
+      'bootstrap-file',
+      'b',
+      InputOption::VALUE_OPTIONAL,
+      "The tests bootstrap file.",
+      \getcwd() . '/tests/bootstrap.php'
+    );
+    $this->addOption(
+      'prefix',
+      'p',
+      InputOption::VALUE_OPTIONAL,
+      "The prefix to remove from the file names.",
+      \getcwd() . '/'
+    );
+    $this->addOption(
+      'json',
+      'j',
+      InputOption::VALUE_NONE,
+      "Output the result as json."
+    );
   }
 
   /**
