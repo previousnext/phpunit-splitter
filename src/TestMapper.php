@@ -4,9 +4,6 @@ declare(strict_types = 1);
 
 namespace PhpUnitSplitter;
 
-use PHPUnit\Runner\DefaultTestResultCache;
-use PHPUnit\Runner\TestResultCache;
-
 /**
  * Generates a map of test methods with their file name and execution time.
  */
@@ -14,16 +11,16 @@ final class TestMapper {
 
   private \SimpleXMLElement|false $testsXml;
 
-  private TestResultCache $resultCache;
+  private GlobbingTestResultCache $resultCache;
 
   private string $prefix;
 
   /**
    * Constructs a new TestMapper.
    */
-  public function __construct(string $testListFilePath, string $testResultFilePath, string $prefix) {
+  public function __construct(string $testListFilePath, string $testResultFiles, string $prefix) {
     $this->testsXml = \simplexml_load_file($testListFilePath);
-    $this->resultCache = new DefaultTestResultCache($testResultFilePath);
+    $this->resultCache = new GlobbingTestResultCache($testResultFiles);
     $this->prefix = $prefix;
   }
 

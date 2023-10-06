@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tests>
  <testCaseClass name="PhpUnitSplitter\Tests\Fixtures\FastTestsTest">
-  <testCaseMethod name="testOne" groups="default"/>
-  <testCaseMethod name="testTwo" groups="default"/>
-  <testCaseMethod name="testThree" groups="default"/>
-  <testCaseMethod name="testFour" groups="default"/>
-  <testCaseMethod name="testFive" groups="default"/>
+  <testCaseMethod name="testOne" groups="__phpunit_covers_::testone,default"/>
+  <testCaseMethod name="testTwo" groups="__phpunit_covers_::testtwo,default"/>
+  <testCaseMethod name="testThree" groups="__phpunit_covers_::testthree,default"/>
+  <testCaseMethod name="testFour" groups="__phpunit_covers_::testfour,default"/>
+  <testCaseMethod name="testFive" groups="__phpunit_covers_::testfive,default"/>
  </testCaseClass>
  <testCaseClass name="PhpUnitSplitter\Tests\Fixtures\ProviderTest">
-  <testCaseMethod name="testProvider" groups="default" dataSet="&quot;one&quot;"/>
-  <testCaseMethod name="testProvider" groups="default" dataSet="&quot;two&quot;"/>
-  <testCaseMethod name="testProvider" groups="default" dataSet="&quot;three&quot;"/>
-  <testCaseMethod name="testProvider" groups="default" dataSet="&quot;four&quot;"/>
-  <testCaseMethod name="testProvider" groups="default" dataSet="&quot;five&quot;"/>
+  <testCaseMethod name="testProvider" groups="__phpunit_covers_::testprovider,default" dataSet="&quot;one&quot;"/>
+  <testCaseMethod name="testProvider" groups="__phpunit_covers_::testprovider,default" dataSet="&quot;two&quot;"/>
+  <testCaseMethod name="testProvider" groups="__phpunit_covers_::testprovider,default" dataSet="&quot;three&quot;"/>
+  <testCaseMethod name="testProvider" groups="__phpunit_covers_::testprovider,default" dataSet="&quot;four&quot;"/>
+  <testCaseMethod name="testProvider" groups="__phpunit_covers_::testprovider,default" dataSet="&quot;five&quot;"/>
  </testCaseClass>
  <testCaseClass name="PhpUnitSplitter\Tests\Fixtures\SlowTestsTest">
-  <testCaseMethod name="testOne" groups="default"/>
-  <testCaseMethod name="testTwo" groups="default"/>
-  <testCaseMethod name="testThree" groups="default"/>
-  <testCaseMethod name="testFour" groups="default"/>
-  <testCaseMethod name="testFive" groups="default"/>
+  <testCaseMethod name="testOne" groups="slow,__phpunit_covers_::testone"/>
+  <testCaseMethod name="testTwo" groups="slow,__phpunit_covers_::testtwo"/>
+  <testCaseMethod name="testThree" groups="slow,__phpunit_covers_::testthree"/>
+  <testCaseMethod name="testFour" groups="slow,__phpunit_covers_::testfour"/>
+  <testCaseMethod name="testFive" groups="slow,__phpunit_covers_::testfive"/>
  </testCaseClass>
 </tests>

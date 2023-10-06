@@ -8,11 +8,13 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Simulates a slow test.
+ *
+ * @group slow
  */
 class SlowTestsTest extends TestCase {
 
   /**
-   *
+   * @covers ::testOne
    */
   public function testOne(): void {
     \usleep(100000);
@@ -20,7 +22,7 @@ class SlowTestsTest extends TestCase {
   }
 
   /**
-   *
+   * @covers ::testTwo
    */
   public function testTwo(): void {
     \usleep(200000);
@@ -28,7 +30,7 @@ class SlowTestsTest extends TestCase {
   }
 
   /**
-   *
+   * @covers ::testThree
    */
   public function testThree(): void {
     \usleep(300000);
@@ -36,7 +38,7 @@ class SlowTestsTest extends TestCase {
   }
 
   /**
-   *
+   * @covers ::testFour
    */
   public function testFour(): void {
     \usleep(400000);
@@ -44,7 +46,7 @@ class SlowTestsTest extends TestCase {
   }
 
   /**
-   *
+   * @covers ::testFive
    */
   public function testFive(): void {
     \usleep(500000);

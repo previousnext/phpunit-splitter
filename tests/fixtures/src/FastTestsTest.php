@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 class FastTestsTest extends TestCase {
 
   /**
-   *
+   * @covers ::testOne
    */
   public function testOne(): void {
     \usleep(10000);
@@ -20,7 +20,7 @@ class FastTestsTest extends TestCase {
   }
 
   /**
-   *
+   * @covers ::testTwo
    */
   public function testTwo(): void {
     \usleep(20000);
@@ -28,7 +28,7 @@ class FastTestsTest extends TestCase {
   }
 
   /**
-   *
+   * @covers ::testThree
    */
   public function testThree(): void {
     \usleep(30000);
@@ -36,7 +36,7 @@ class FastTestsTest extends TestCase {
   }
 
   /**
-   *
+   * @covers ::testFour
    */
   public function testFour(): void {
     \usleep(40000);
@@ -44,7 +44,7 @@ class FastTestsTest extends TestCase {
   }
 
   /**
-   *
+   * @covers ::testFive
    */
   public function testFive(): void {
     \usleep(50000);
