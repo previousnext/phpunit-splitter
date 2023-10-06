@@ -17,7 +17,7 @@ class PhpUnitSplitterTest extends TestCase {
    */
   public function testSplitter(): void {
     $fixtures = \dirname(__DIR__) . '/fixtures';
-    $mapper = new TestMapper("$fixtures/tests.xml", "$fixtures/.phpunit.result.cache", \dirname(__DIR__, 2) . '/');
+    $mapper = new TestMapper("$fixtures/tests.xml", "$fixtures/.phpunit.cache/test-results*", \dirname(__DIR__, 2) . '/');
     $map = $mapper->getMap();
 
     $this->assertSame([

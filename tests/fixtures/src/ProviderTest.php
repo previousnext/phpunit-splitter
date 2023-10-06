@@ -13,6 +13,7 @@ class ProviderTest extends TestCase {
 
   /**
    * @dataProvider provider
+   * @covers ::testProvider
    */
   public function testProvider(int $sleep): void {
     \usleep($sleep);

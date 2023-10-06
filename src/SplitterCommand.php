@@ -39,11 +39,11 @@ class SplitterCommand extends Command {
       \getcwd() . '/tests.xml',
     );
     $this->addOption(
-      'results-file',
+      'results-files',
       'f',
       InputOption::VALUE_REQUIRED,
-      "The results cache file.",
-      \getcwd() . '/.phpunit.result.cache',
+      "The results cache files.",
+      \getcwd() . '/.phpunit.cache/test-results*',
     );
     $this->addOption(
       'bootstrap-file',
@@ -79,11 +79,11 @@ class SplitterCommand extends Command {
     $splits = (int) $input->getArgument('splits');
     $index = (int) $input->getArgument('index');
     $testsFile = $input->getOption('tests-file');
-    $resultsFile = $input->getOption('results-file');
+    $resultsFiles = $input->getOption('results-files');
     $prefix = $input->getOption('prefix');
     $json = $input->getOption('json');
 
-    $mapper = new TestMapper($testsFile, $resultsFile, $prefix);
+    $mapper = new TestMapper($testsFile, $resultsFiles, $prefix);
     $map = $mapper->sortMap($mapper->getMap());
 
     $split = $this->split($map, $splits, $index);

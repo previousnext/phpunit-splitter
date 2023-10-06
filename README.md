@@ -7,7 +7,7 @@ Allows you to split your PHPUnit tests by timings.
 Generate a timing file:
 
 ```bash
-phpunit --cache-result --cache-result-file=.phpunit.result.cache
+phpunit --cache-result --results-files=.phpunit.cache/test-results*
 ```
 
 List your tests:
@@ -21,24 +21,24 @@ This generates an XML file with a list of tests. You can add `--testsuite` to li
 Split the tests in 2 groups and get the first group (0):
 
 ```bash
-phpunit-splitter 2 0 --tests-file=tests.xml --results-file=.phpunit.result.cache
+phpunit-splitter 2 0 --tests-file=tests.xml --results-files=.phpunit.cache/test-results*
 ```
 
 Split the tests in 4 groups and get the third group (2):
 
 ```bash
-phpunit-splitter 4 2 --tests-file=tests.xml --results-file=.phpunit.result.cache
+phpunit-splitter 4 2 --tests-file=tests.xml --results-files=.phpunit.cache/test-results*
 ```
 
 Pass the results to PHPUnit:
 
 ```bash
-./phpunit-splitter 2 0 --tests-file=tests/fixtures/tests.xml --results-file=tests/fixtures/.phpunit.result.cache | xargs ./vendor/bin/phpunit 
+./phpunit-splitter 2 0 --tests-file=tests/fixtures/tests.xml --results-files=.phpunit.cache/test-results* | xargs ./vendor/bin/phpunit 
 done
 ```
 
 Output the test list as JSON:
 
 ```bash
-./phpunit-splitter 2 0 --json --tests-file=tests/fixtures/tests.xml --results-file=tests/fixtures/.phpunit.result.cache
+./phpunit-splitter 2 0 --json --tests-file=tests/fixtures/tests.xml --results-files=.phpunit.cache/test-results*
 ```

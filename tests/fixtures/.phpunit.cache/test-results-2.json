@@ -1,0 +1,1 @@
+{"version":1,"defects":[],"times":{"PhpUnitSplitter\\Tests\\Fixtures\\SlowTestsTest::testOne":0.101,"PhpUnitSplitter\\Tests\\Fixtures\\SlowTestsTest::testTwo":0.2,"PhpUnitSplitter\\Tests\\Fixtures\\SlowTestsTest::testThree":0.3,"PhpUnitSplitter\\Tests\\Fixtures\\SlowTestsTest::testFour":0.4,"PhpUnitSplitter\\Tests\\Fixtures\\SlowTestsTest::testFive":0.5}}
