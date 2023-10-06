@@ -21,6 +21,7 @@
     "previousnext/coding-standard": "^0.1.3",
     "staabm/annotate-pull-request-from-checkstyle": "^1.8"
   },
+  "bin" : ["phpunit-splitter"],
   "conflict": {
     "drupal/coder": "<8.3.21"
   },
