@@ -71,6 +71,7 @@ class SplitterCommand extends Command {
    * {@inheritdoc}
    */
   protected function execute(InputInterface $input, OutputInterface $output): int {
+    \set_error_handler(fn($severity, $message, $file, $line) => throw new \ErrorException($message, 0, $severity, $file, $line));
     $bootstrap = $input->getOption('bootstrap-file');
     if (\file_exists($bootstrap)) {
       include_once $bootstrap;
