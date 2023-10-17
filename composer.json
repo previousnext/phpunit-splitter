@@ -1,6 +1,7 @@
 {
   "name": "previousnext/phpunit-splitter",
   "description": "Splits phpunit tests",
+  "keywords": ["testing"],
   "license": "GPL-2.0-or-later",
   "authors": [
     {
