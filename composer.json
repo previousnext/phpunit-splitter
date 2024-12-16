@@ -19,7 +19,7 @@
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
     "phpstan/phpstan": "^1.10",
     "phpunit/phpunit": "^9.6",
-    "previousnext/coding-standard": "^0.1.3",
+    "previousnext/coding-standard": "^1.1.1",
     "staabm/annotate-pull-request-from-checkstyle": "^1.8"
   },
   "bin" : ["phpunit-splitter"],

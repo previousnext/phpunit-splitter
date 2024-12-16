@@ -34,7 +34,9 @@ final class GlobbingTestResultCache {
   /**
    * Constructs a new GlobbingTestResultCache.
    */
-  public function __construct(string $filepaths = ".phpunit.cache/test-results*") {
+  public function __construct(
+    string $filepaths = ".phpunit.cache/test-results*",
+  ) {
     $filenames = \glob($filepaths);
     if ($filenames === FALSE) {
       $filenames = [];
