@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace PhpUnitSplitter;
 
@@ -34,7 +34,9 @@ final class GlobbingTestResultCache {
   /**
    * Constructs a new GlobbingTestResultCache.
    */
-  public function __construct(string $filepaths = ".phpunit.cache/test-results*") {
+  public function __construct(
+    string $filepaths = ".phpunit.cache/test-results*",
+  ) {
     $filenames = \glob($filepaths);
     if ($filenames === FALSE) {
       $filenames = [];

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace PhpUnitSplitter;
 
@@ -18,7 +18,11 @@ final class TestMapper {
   /**
    * Constructs a new TestMapper.
    */
-  public function __construct(string $testListFilePath, string $testResultFiles, string $prefix) {
+  public function __construct(
+    string $testListFilePath,
+    string $testResultFiles,
+    string $prefix,
+  ) {
     $this->testsXml = \simplexml_load_file($testListFilePath);
     $this->resultCache = new GlobbingTestResultCache($testResultFiles);
     $this->prefix = $prefix;
@@ -82,7 +86,7 @@ final class TestMapper {
    *   The sorted map.
    */
   public function sortMap(array $map): array {
-    \uasort($map, function ($a, $b) {
+    \uasort($map, static function ($a, $b) {
       return $a['time'] <=> $b['time'];
     });
     return $map;

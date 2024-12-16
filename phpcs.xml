@@ -3,6 +3,8 @@
   <file>./src</file>
   <file>./tests/src</file>
   <rule ref="PreviousNextDrupal" />
-  <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions" />
+  <rule ref="SlevomatCodingStandard.Commenting.UselessInheritDocComment" >
+    <severity>0</severity>
+  </rule>
   <arg name="report" value="full"/>
 </ruleset>
