@@ -48,7 +48,7 @@ final class GlobbingTestResultCache {
    * {@inheritdoc}
    */
   public function getState(string $testName): int {
-    return $this->defects[$testName] ?? TestStatus::UNKNOWN->getValue();
+    return $this->defects[$testName] ?? TestStatus::Unknown->getValue();
   }
 
   /**

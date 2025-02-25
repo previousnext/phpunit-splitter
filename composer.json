@@ -1,31 +1,35 @@
 {
   "name": "previousnext/phpunit-splitter",
   "description": "Splits phpunit tests",
-  "keywords": ["testing"],
+  "keywords": ["testing", "phpunit"],
   "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Michael Strelan",
       "email": "michael.strelan@previousnext.com.au"
+    },
+    {
+      "name": "Kim Pepper",
+      "email": "kim@previousnext.com.au"
     }
   ],
   "type": "project",
   "require": {
     "php": "^8.1",
     "ext-simplexml": "*",
-    "symfony/console": "^6.3|^7.0"
+    "phpstan/phpstan-deprecation-rules": "^1.2",
+    "phpstan/phpstan-phpunit": "^1.4",
+    "symfony/console": "^6.3|^7.2"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-    "phpstan/phpstan": "^1.10",
-    "phpunit/phpunit": "^9.6",
+    "phpstan/extension-installer": "^1.4",
+    "phpstan/phpstan": "^1.12.19",
+    "phpunit/phpunit": "^10.5.45",
     "previousnext/coding-standard": "^1.1.1",
     "staabm/annotate-pull-request-from-checkstyle": "^1.8"
   },
-  "bin" : ["phpunit-splitter"],
-  "conflict": {
-    "drupal/coder": "<8.3.21"
-  },
+  "bin": ["phpunit-splitter"],
   "autoload": {
     "psr-4": {"PhpUnitSplitter\\": "src/"}
   },
@@ -39,7 +43,22 @@
     "sort-packages": true,
     "bin-dir": "bin",
     "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "phpstan/extension-installer": true
     }
+  },
+  "scripts": {
+    "phpcs": [
+      "phpcs"
+    ],
+    "phpcbf": [
+      "phpcbf"
+    ],
+    "phpstan": [
+      "phpstan analyse --no-progress -v"
+    ],
+    "phpunit": [
+      "phpunit"
+    ]
   }
 }

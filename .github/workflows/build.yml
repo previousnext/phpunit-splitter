@@ -17,7 +17,7 @@ jobs:
       matrix:
         prefer_lowest: ["", "--prefer-lowest"]
     container:
-      image: skpr/php-cli:8.3-dev-v2-latest
+      image: skpr/php-cli:8.4-dev-v2-latest
       options:
         --pull always
         --user 1001:1001
@@ -31,7 +31,7 @@ jobs:
       - name: 🧹 PHPCS
         run: ./bin/phpcs --report=checkstyle -q | ./bin/cs2pr
       - name: 🧹 PHPStan
-        run: ./bin/phpstan --error-format=github analyse
+        run: ./bin/phpstan --error-format=github analyse -v
       - name: ⚡ Run Tests
         run: ./bin/phpunit --log-junit phpunit-results.xml
       - name: 📝 Publish Test Results
