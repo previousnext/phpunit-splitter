@@ -1,0 +1,7 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method PhpUnitSplitter\\TestMapper\:\:getMap\(\) should return array\<string, array\<string, float\>\> but returns array\<int\|string, array\<string, float\|list\<array\<string, float\|string\>\>\|string\>\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/TestMapper.php

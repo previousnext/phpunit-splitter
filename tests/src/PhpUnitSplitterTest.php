@@ -4,20 +4,24 @@ declare(strict_types=1);
 
 namespace PhpUnitSplitter\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use PhpUnitSplitter\TestMapper;
 
 /**
- * @coversDefaultClass \PhpUnitSplitter\TestMapper
+ * Tests for the TestMapper class.
  */
+#[CoversClass(TestMapper::class)]
 class PhpUnitSplitterTest extends TestCase {
 
   /**
-   * @covers ::getMap
+   * Tests the splitter functionality of the TestMapper class.
    */
+  #[Test]
   public function testSplitter(): void {
     $fixtures = \dirname(__DIR__) . '/fixtures';
-    $mapper = new TestMapper("$fixtures/tests.xml", "$fixtures/.phpunit.cache/test-results*", \dirname(__DIR__, 2) . '/');
+    $mapper = new TestMapper("$fixtures/tests.xml", "$fixtures/.phpunit.cache/*/test-results*", \dirname(__DIR__, 2) . '/');
     $map = $mapper->getMap();
 
     $this->assertSame([

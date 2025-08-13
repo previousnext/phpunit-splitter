@@ -35,7 +35,7 @@ final class GlobbingTestResultCache {
    * Constructs a new GlobbingTestResultCache.
    */
   public function __construct(
-    string $filepaths = ".phpunit.cache/test-results*",
+    string $filepaths = ".phpunit.cache/*/test-results*",
   ) {
     $filenames = \glob($filepaths);
     if ($filenames === FALSE) {
