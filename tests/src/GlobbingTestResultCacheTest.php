@@ -15,11 +15,11 @@ use PhpUnitSplitter\GlobbingTestResultCache;
 #[CoversClass(GlobbingTestResultCache::class)]
 class GlobbingTestResultCacheTest extends TestCase {
 
-    /**
-     * Tests loading multiple cache files.
-     */
-    #[Test]
-    public function testLoadFile(): void {
+  /**
+   * Tests loading multiple cache files.
+   */
+  #[Test]
+  public function testLoadFile(): void {
     $cache = new GlobbingTestResultCache(\dirname(__DIR__) . '/fixtures/.phpunit.cache/*/test-results*');
     $cache->load();
     // Assert we get test times for both cache files.

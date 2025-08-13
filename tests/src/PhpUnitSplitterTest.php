@@ -15,6 +15,9 @@ use PhpUnitSplitter\TestMapper;
 #[CoversClass(TestMapper::class)]
 class PhpUnitSplitterTest extends TestCase {
 
+  /**
+   * Tests the splitter functionality of the TestMapper class.
+   */
   #[Test]
   public function testSplitter(): void {
     $fixtures = \dirname(__DIR__) . '/fixtures';
