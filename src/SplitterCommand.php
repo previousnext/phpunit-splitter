@@ -43,7 +43,7 @@ class SplitterCommand extends Command {
       'f',
       InputOption::VALUE_REQUIRED,
       "The results cache files.",
-      \getcwd() . '/.phpunit.cache/test-results*',
+      \getcwd() . '/.phpunit.cache/*/test-results*',
     );
     $this->addOption(
       'bootstrap-file',
