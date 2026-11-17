@@ -6,6 +6,10 @@ namespace PhpUnitSplitter;
 
 /**
  * Generates a map of test methods with their file name and execution time.
+ *
+ * @phpstan-type TestCaseTime array{testCase: string, time: float}
+ * @phpstan-type TestClassEntry array{className: string, time: float, testCases: list<TestCaseTime>}
+ * @phpstan-type TestMap array<array-key, TestClassEntry>
  */
 final class TestMapper {
 
@@ -31,7 +35,7 @@ final class TestMapper {
   /**
    * Returns a map of test methods with their file name and execution time.
    *
-   * @return array<string,array<string,float>>
+   * @return TestMap
    *   The map of test files and execution times.
    */
   public function getMap(): array {
@@ -51,10 +55,8 @@ final class TestMapper {
       if (\str_starts_with($filename, $this->prefix)) {
         $filename = \substr($filename, \strlen($this->prefix));
       }
-      $map[$filename] = [
-        'className' => $className,
-        'time' => 0.0,
-      ];
+      $totalTime = 0.0;
+      $testCaseTimes = [];
       $testCases = $class->xpath('testCaseMethod');
       foreach ($testCases as $testCase) {
         $shortName = (string) $testCase->attributes()['name'];
@@ -66,12 +68,17 @@ final class TestMapper {
           $shortName .= "@$dataSet";
         }
         $time = $this->resultCache->getTime($cacheKey);
-        $map[$filename]['testCases'][] = [
+        $testCaseTimes[] = [
           'testCase' => $shortName,
           'time' => $time,
         ];
-        $map[$filename]['time'] += $time;
+        $totalTime += $time;
       }
+      $map[$filename] = [
+        'className' => $className,
+        'time' => $totalTime,
+        'testCases' => $testCaseTimes,
+      ];
     }
     return $map;
   }
@@ -79,10 +86,10 @@ final class TestMapper {
   /**
    * Sorts the map by execution time.
    *
-   * @param array<string,array<string,float>> $map
+   * @param TestMap $map
    *   The map to sort.
    *
-   * @return array<string,array<string,float>>
+   * @return TestMap
    *   The sorted map.
    */
   public function sortMap(array $map): array {

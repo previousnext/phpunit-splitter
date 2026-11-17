@@ -12,6 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * A symfony command for splitting PHPUnit tests.
+ *
+ * @phpstan-import-type TestMap from TestMapper
  */
 class SplitterCommand extends Command {
 
@@ -102,14 +104,14 @@ class SplitterCommand extends Command {
   /**
    * Splits the tests map into the given number of splits.
    *
-   * @param array<string,array<string,float>> $map
+   * @param TestMap $map
    *   The map of tests.
    * @param int $splits
    *   The number of splits.
    * @param int $index
    *   The index of the current split.
    *
-   * @return array<string,array<string,float>>
+   * @return TestMap
    *   The split map.
    */
   private function split(array $map, int $splits, int $index): array {
